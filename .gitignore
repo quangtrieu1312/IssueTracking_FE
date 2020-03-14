@@ -35,7 +35,7 @@ yarn-error.log
 .build-analytics
 
 # rollup-test output
-/modules/rollup-test/dist/
+#/modules/rollup-test/dist/
 
 # User specific bazel settings
 .bazelrc.user
