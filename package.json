@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "postinstall": "ng build --aot --prod",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+	"heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,8 @@
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
     "rxjs": "~6.5.4",
+	"express": "^4.17.1",
+    "path": "^0.12.7",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2",
 	"typescript": "~3.7.5"
@@ -38,6 +41,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
