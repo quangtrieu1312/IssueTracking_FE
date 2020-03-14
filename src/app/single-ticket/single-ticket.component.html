@@ -1,0 +1,73 @@
+<mat-card class="example-card" *ngIf='dataLoaded'>
+    <mat-card-header style="min-width: 320px ;max-width: 4000px; width: 100%;">
+        <mat-card-title style="min-width: 320px ;max-width: 4000px; width: 100%;">
+            {{ticket.name}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{ticket.owner}}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p><b>Status: </b>{{ticket.status}}</p>
+
+        <p><b>Alert: </b>
+            <mat-slide-toggle [(ngModel)]='ticket.alert.mode' (change)='setTicketMode($event)'></mat-slide-toggle>
+        </p>
+        <p><b>Cron Expression:</b> {{ticket.alert.cronExpression}}</p>
+        <div *ngIf='hasMembers()'>
+            <b>Members: </b>
+            <ng-container *ngFor='let member of ticket.members' style="min-width: 320px ;max-width: 4000px; width: 100%;">
+                <div class="member" style="display:inline-block;">{{member}};</div>
+            </ng-container>
+        </div>
+        <div *ngIf='hasEmails()'>
+            <b>Extra emails: </b>
+            <ng-container *ngFor='let email of ticket.emails' style="min-width: 320px ;max-width: 4000px; width: 100%;">
+                <p class="email" style="display:inline-block;">{{email}};</p>
+            </ng-container>
+        </div>
+        <p style="min-width: 320px ;max-width: 4000px; width: 100%;"><b>Description: </b>{{ticket.description}}</p>
+        <mat-expansion-panel class="mat-elevation-z0" (open)="onEdit=true" (close)="onEdit=false">
+            <mat-expansion-panel-header style="position: absolute; right: 0px; top: 0px;"></mat-expansion-panel-header>
+            <div class="input-row">
+                <mat-form-field class="my-form-field">
+                    <input matInput placeholder="Ticket name" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let status of statuses" [value]="status" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                            {{status}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                    <input matInput placeholder="Cron Expression">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                    <input matInput placeholder="Members">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                    <input matInput placeholder="Extra emails">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 4000px; width: 100%;">
+                    <textarea matInput placeholder="Description" rows="5" cols="40"></textarea>
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button>BACK</button>
+        <button mat-button>SAVE</button>
+    </mat-card-actions>
+</mat-card>

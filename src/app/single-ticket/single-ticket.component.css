@@ -1,0 +1,13 @@
+.example-card {
+    min-width: 320px;
+    max-width: 4000px;
+    width: 100%;
+}
+
+.member, .email {
+    padding-right: 5px;
+}
+
+p {
+    word-break: break-all
+}

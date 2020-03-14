@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+body {
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+}
+
+.basic-container {
+    padding: 30px;
+}
+
+.version-info {
+    font-size: 8pt;
+    float: right;
+    margin: 8px;
+}
+
+/* .mat-focused .mat-form-field-label {
+    color: black;
+}
+
+.mat-focus .mat-form-field-label {
+
+}
+
+.mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background: black;
+} */
+
+/** Overrides underline color **/
+.my-form-field.mat-form-field-appearance-legacy .mat-form-field-underline,
+.my-form-field.mat-form-field-appearance-legacy .mat-form-field-ripple,
+.my-form-field.mat-form-field-appearance-legacy.mat-focused
+    .mat-form-field-underline,
+.my-form-field.mat-form-field-appearance-legacy.mat-focused
+    .mat-form-field-ripple {
+    background-color: black;
+}
+
+/** Overrides label color **/
+.my-form-field.mat-form-field-appearance-legacy .mat-form-field-label,
+.my-form-field.mat-form-field-appearance-legacy.mat-focused
+    .mat-form-field-label {
+    color: black;
+}
+
+/** Overrides caret & text color **/
+.my-form-field.mat-form-field-appearance-legacy .mat-input-element {
+    caret-color: black;
+  color: black;
+}

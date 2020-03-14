@@ -1,0 +1,19 @@
+.button {
+    margin: auto;
+    display: table;
+    max-width: 150 px;
+    min-width: 50 px;
+    width: 100%;
+}
+
+.btn {
+    max-width: 150 px;
+    min-width: 50 px;
+    width: 100%;
+}
+
+.button-wrapper {
+    max-width: 150 px;
+    min-width: 50 px;
+    width: 100%;
+}

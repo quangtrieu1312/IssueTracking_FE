@@ -1,0 +1,28 @@
+<div class="container col-lg-6">
+    <h1 class="text-center">Login</h1>
+    <div class="card">
+        <div class="card-body">
+            <form class="form-group">
+                <div class="form-group">
+                    <label for="email">User Name :</label>
+                    <input type="text" class="form-control" id="username" [(ngModel)]="authRequest.username"
+                        placeholder="Enter User Name" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="authRequest.password"
+                        placeholder="Enter password" name="password">
+                </div>
+                <div class="button-wrapper">
+                    <button (click)=handleLogin() class="btn btn-dark">Login</button>
+                </div>
+                <div class="button-wrapper">
+                    <button [routerLink]="'/signup'" class="btn btn-dark">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="error" *ngIf='hasError'>
+        <p>{{errorMsg}}</p>
+    </div>
+</div>

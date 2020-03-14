@@ -1,0 +1,43 @@
+<button type="button" class="btn btn-dark" (click)=getAllTickets()>
+    Refresh
+</button>
+<mat-table mat-table [dataSource]="tickets" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="order">
+        <mat-header-cell *matHeaderCellDef> Order</mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index"> {{i+1}} <a fxFlexFill
+                [routerLink]="'/ticket/'+element.ticketId" class="mat-row-link"></a>
+        </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef fxFlex="50"> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="50"> <span class="ellipsis">{{element.name}} </span></mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef fxFlex="50"> Description</mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="50"> <span class="ellipsis">{{element.description}} </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cron">
+        <mat-header-cell *matHeaderCellDef> Cron</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.alert.cronExpression}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mode">
+        <mat-header-cell *matHeaderCellDef> Mode</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <mat-slide-toggle [(ngModel)]='element.alert.mode' style="padding-left: 10px;" (change)="setAlert(element)"></mat-slide-toggle>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

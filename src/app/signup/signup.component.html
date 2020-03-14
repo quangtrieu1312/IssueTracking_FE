@@ -1,0 +1,42 @@
+<div class="container col-lg-6">
+    <h1 class="text-center">Register</h1>
+    <div class="card">
+        <div class="card-body">
+            <form class="form-group">
+                <div class="form-group">
+                    <label for="email">Username :</label>
+                    <input type="text" class="form-control" id="username" [(ngModel)]="signupRequest.username"
+                        placeholder="Enter username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="text" class="form-control" type="email" name="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="signupRequest.email"
+                        placeholder="Enter email" ngModel #emailref="ngModel">
+                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert alert-danger">
+                        <div [hidden]="!emailref.errors?.pattern">
+                            Invalid email
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="signupRequest.password"
+                        placeholder="Enter password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Re-enter password:</label>
+                    <input type="password" class="form-control" id="password2" [(ngModel)]="signupRequest.password2"
+                        placeholder="Re-enter password" name="password">
+                </div>
+                <div class="button-wrapper">
+                    <button class="btn btn-dark" (click)="handleSignup()"
+                        style="margin: auto; display:block;">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="error" *ngIf='hasError'>
+        <p>{{errorMsg}}</p>
+    </div>
+</div>
