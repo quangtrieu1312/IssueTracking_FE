@@ -3,16 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    “start”: “node server.js”,
-    “postinstall”: “ng build — aot — prod”,
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "postinstall": "ng build --aot --prod",
     "e2e": "ng e2e"
-  },
-  “engines”: { 
-    “node”: “8.12.0”, 
-    “npm”: “6.4.1”
   },
   "private": true,
   "dependencies": {
@@ -50,5 +46,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.7.5"
-  }
+  },
+  “engines”: { 
+    “node”: “8.12.0”, 
+    “npm”: “6.4.1”
+  },
 }
