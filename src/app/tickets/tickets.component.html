@@ -1,7 +1,7 @@
 <button type="button" class="btn btn-dark" (click)=getAllTickets()>
     Refresh
 </button>
-<button type="button" class="btn btn-dark" routerLink="new-ticket">
+<button type="button" class="btn btn-dark" (click)="goToNewTicket()">
     Add ticket
 </button>
 <mat-table mat-table [dataSource]="tickets" class="mat-elevation-z8">

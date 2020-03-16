@@ -31,6 +31,10 @@ export class TicketsComponent implements OnInit {
     });
   }
 
+  goToNewTicket(){
+    this.router.navigateByUrl('/new-ticket')
+  }
+
   setAlert(ticket: TicketInfo) {
     this.ticketsService.setAlert(ticket).subscribe((result) => {
     });
