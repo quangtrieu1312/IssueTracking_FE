@@ -32,16 +32,6 @@ export class SingleTicketService {
     return this.http.get(`${this.userUrl}/id/${userIds}`, this.httpOptions);
   }
 
-  postTicket(ticket: TicketInfo): Observable<any> {
-    this.ticketRequest.name = ticket.name;
-    this.ticketRequest.status = ticket.status;
-    this.ticketRequest.alert = ticket.alert;
-    this.ticketRequest.members = ticket.members;
-    this.ticketRequest.emails = ticket.emails;
-    this.ticketRequest.description = ticket.description;
-    return this.http.post<TicketInfo>(this.ticketUrl, this.ticketRequest, this.httpOptions);
-  }
-
   putTicket(ticket: TicketInfo): Observable<any> {
     this.ticketRequest.name = ticket.name;
     this.ticketRequest.status = ticket.status;

@@ -28,7 +28,7 @@
             </ng-container>
         </div>
         <p style="min-width: 320px ;max-width: 4000px; width: 100%;"><b>Description: </b>{{ticket.description}}</p>
-        <mat-expansion-panel class="mat-elevation-z0" (open)="onEdit=true" (close)="onEdit=false">
+        <mat-expansion-panel class="mat-elevation-z0">
             <mat-expansion-panel-header style="position: absolute; right: 0px; top: 0px;"></mat-expansion-panel-header>
             <div class="input-row">
                 <mat-form-field class="my-form-field">
@@ -60,7 +60,7 @@
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
                     <input matInput placeholder="Extra emails" [(ngModel)]="emails"
-                        pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]{0,1}$)+" ngModel #emailref="ngModel">
+                        pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]+)+" ngModel #emailref="ngModel">
                     <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert alert-danger">
                         <div [hidden]="!emailref.errors?.pattern">
                             Invalid email

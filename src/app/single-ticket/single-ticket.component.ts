@@ -72,7 +72,7 @@ export class SingleTicketComponent implements OnInit {
   }
 
   handleSave() {
-    var emailPattern = new RegExp("([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]{0,1}$)+");
+
     this.editTicket.members = this.members.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != "";
     });
