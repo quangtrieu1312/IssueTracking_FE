@@ -45,7 +45,7 @@ export class SingleTicketComponent implements OnInit {
       },
       {
         value: 'ON_HOLD',
-        view: 'ON_HOLD'
+        view: 'ON HOLD'
       },
       {
         value: 'REVISED',
