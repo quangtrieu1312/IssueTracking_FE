@@ -30,7 +30,7 @@
                         placeholder="Re-enter password" name="password">
                 </div>
                 <div class="button-wrapper">
-                    <button class="btn btn-dark" (click)="handleSignup()"
+                    <button class="btn btn-dark" (click)="handleSignup()" [disabled]="emailref.errors?.pattern"
                         style="margin: auto; display:block;">Signup</button>
                 </div>
             </form>

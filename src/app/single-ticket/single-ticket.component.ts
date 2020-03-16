@@ -69,6 +69,13 @@ export class SingleTicketComponent implements OnInit {
   getTicket(ticketId: String) {
     this.singleTicketService.getTicket(ticketId).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
+      this.newname = this.ticket.name;
+      this.newstatus = this.ticket.status;
+      this.newmode = false;
+      this.newcron = this.ticket.alert.cronExpression;
+      this.newmembers = this.ticket.members.join(';');
+      this.newemails = this.ticket.emails.join(';');
+      this.newdescription = this.ticket.description;
       this.dataLoaded = true;
     });
   }

@@ -78,6 +78,6 @@
     </mat-card-content>
     <mat-card-actions align="end">
         <button mat-button routerLink="ticket">BACK</button>
-        <button mat-button (click)="handleSave()">SAVE</button>
+        <button mat-button (click)="handleSave()" [disabled]="emailref.errors?.pattern">SAVE</button>
     </mat-card-actions>
 </mat-card>
