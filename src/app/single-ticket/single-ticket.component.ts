@@ -50,11 +50,14 @@ export class SingleTicketComponent implements OnInit {
         view: 'CLOSED'
       }
     ];
-
-  editTicket: TicketInfo = new TicketInfo();
-  members: String = '';
-  emails: String = '';
-
+  newticket: TicketInfo = new TicketInfo();
+  newname: String = '';
+  newstatus: String = '';
+  newmode: Boolean = false;
+  newcron: String = '';
+  newmembers: String = '';
+  newemails: String = '';
+  newdescription: String = '';
   dataLoaded = false;
 
   ngOnInit(): void {
@@ -64,21 +67,24 @@ export class SingleTicketComponent implements OnInit {
   getTicket(ticketId: String) {
     this.singleTicketService.getTicket(ticketId).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
-      this.editTicket = JSON.parse(JSON.stringify(this.ticket));
       this.dataLoaded = true;
     });
   }
 
   handleSave() {
-
-    this.editTicket.members = this.members.split(new RegExp('[,; ]')).filter(function (str) {
+    this.newticket.name = this.newname;
+    this.newticket.status = this.newstatus;
+    this.newticket.alert.mode = this.ticket.alert.mode;
+    this.newticket.alert.cronExpression = this.newcron;
+    this.newticket.description = this.newdescription;
+    this.newticket.members = this.newmembers.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != "";
     });
-    this.editTicket.emails = this.emails.split(new RegExp('[,; ]')).filter(function (str) {
+    this.newticket.emails = this.newemails.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != "";
     });
 
-    this.singleTicketService.putTicket(this.editTicket).subscribe((result) => {
+    this.singleTicketService.putTicket(this.newticket).subscribe((result) => {
 
     })
   }
@@ -94,10 +100,8 @@ export class SingleTicketComponent implements OnInit {
   setTicketMode(e) {
     if (e.checked) {
       this.ticket.alert.mode = true;
-      this.editTicket.alert.mode = true;
     } else {
       this.ticket.alert.mode = false;
-      this.editTicket.alert.mode = false;
     }
   }
 

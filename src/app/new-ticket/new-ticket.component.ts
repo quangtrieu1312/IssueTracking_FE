@@ -42,7 +42,7 @@ export class NewTicketComponent implements OnInit {
       }
     ];
 
-  editTicket: TicketInfo = new TicketInfo();
+  newticket: TicketInfo = new TicketInfo();
   ticket: TicketInfo = new TicketInfo();
   alert: Alert = new Alert();
   emails: String = '';
@@ -68,7 +68,7 @@ export class NewTicketComponent implements OnInit {
     this.ticket.owner = 'Owner example';
     this.ticket.status = 'NEW';
     this.ticket.ticketId = 'ExampleId';
-    this.editTicket = JSON.parse(JSON.stringify(this.ticket));
+    this.newticket = JSON.parse(JSON.stringify(this.ticket));
     this.dataLoaded = true;
   }
 
@@ -93,13 +93,13 @@ export class NewTicketComponent implements OnInit {
   }
 
   handleSave() {
-    this.editTicket.members = this.members.split(new RegExp('[,; ]')).filter(function (str) {
+    this.newticket.members = this.members.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != '';
     });
-    this.editTicket.emails = this.emails.split(new RegExp('[,; ]')).filter(function (str) {
+    this.newticket.emails = this.emails.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != '';
     });
-    this.newTicketService.postTicket(this.editTicket).subscribe((result) => {
+    this.newTicketService.postTicket(this.newticket).subscribe((result) => {
       this.router.navigateByUrl('ticket');
     }, (result) => {
 

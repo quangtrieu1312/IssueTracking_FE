@@ -33,14 +33,14 @@
             <div class="input-row">
                 <mat-form-field class="my-form-field">
                     <input matInput placeholder="Ticket name" style="min-width: 320px ;max-width: 2048px; width: 100%;"
-                        [(ngModel)]="editTicket.name">
+                        [(ngModel)]="newticket.name">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field>
                     <mat-label>Status</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let status of statuses" [value]="editTicket.status"
+                        <mat-option *ngFor="let status of statuses" [value]="newticket.status"
                             style="min-width: 320px ;max-width: 2048px; width: 100%;">
                             {{status.view}}
                         </mat-option>
@@ -49,7 +49,7 @@
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                    <input matInput placeholder="Cron Expression" [(ngModel)]="editTicket.alert.cronExpression">
+                    <input matInput placeholder="Cron Expression" [(ngModel)]="newticket.alert.cronExpression">
                 </mat-form-field>
             </div>
             <div class="input-row">
@@ -71,7 +71,7 @@
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 4000px; width: 100%;">
                     <textarea matInput placeholder="Description" rows="5" cols="40"
-                        [(ngModel)]="editTicket.description"></textarea>
+                        [(ngModel)]="newticket.description"></textarea>
                 </mat-form-field>
             </div>
         </mat-expansion-panel>
