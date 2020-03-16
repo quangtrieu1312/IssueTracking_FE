@@ -74,6 +74,7 @@ export class SingleTicketComponent implements OnInit {
   }
 
   handleSave() {
+    this.newticket.ticketId = this.ticket.ticketId;
     this.newticket.name = this.newname;
     this.newticket.status = this.newstatus;
     this.newmode = this.ticket.alert.mode;
