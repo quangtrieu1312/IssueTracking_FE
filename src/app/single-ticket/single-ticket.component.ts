@@ -73,8 +73,8 @@ export class SingleTicketComponent implements OnInit {
       this.newstatus = this.ticket.status;
       this.newmode = false;
       this.newcron = this.ticket.alert.cronExpression;
-      this.newmembers = this.ticket.members.join(';');
-      this.newemails = this.ticket.emails.join(';');
+      this.newmembers = this.ticket.members.join('; ');
+      this.newemails = this.ticket.emails.join('; ');
       this.newdescription = this.ticket.description;
       this.dataLoaded = true;
     });
