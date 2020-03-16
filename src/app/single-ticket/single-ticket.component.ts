@@ -17,7 +17,16 @@ export class SingleTicketComponent implements OnInit {
     private singleTicketService: SingleTicketService) {
     this.route.params.subscribe(params => this.ticketId = params.ticketId);
   }
-
+  newticket: TicketInfo = new TicketInfo();
+  newname: String = '';
+  newstatus: String = '';
+  newmode: Boolean = false;
+  newcron: String = '';
+  newmembers: String = '';
+  newemails: String = '';
+  newdescription: String = '';
+  newalert: Alert = new Alert();
+  dataLoaded = false;
   ticket: TicketInfo = new TicketInfo();
   ticketId: String = '';
   statuses: any[] =
@@ -51,15 +60,7 @@ export class SingleTicketComponent implements OnInit {
         view: 'CLOSED'
       }
     ];
-  newticket: TicketInfo = new TicketInfo();
-  newname: String = '';
-  newstatus: String = '';
-  newmode: Boolean = false;
-  newcron: String = '';
-  newmembers: String = '';
-  newemails: String = '';
-  newdescription: String = '';
-  dataLoaded = false;
+
 
   ngOnInit(): void {
     this.getTicket(this.ticketId);
@@ -75,9 +76,10 @@ export class SingleTicketComponent implements OnInit {
   handleSave() {
     this.newticket.name = this.newname;
     this.newticket.status = this.newstatus;
-    this.newticket.alert = new Alert();
-    this.newticket.alert.mode = this.ticket.alert.mode;
-    this.newticket.alert.cronExpression = this.newcron;
+    this.newmode = this.ticket.alert.mode;
+    this.newalert.mode = this.newmode;
+    this.newalert.cronExpression = this.newcron;
+    this.newticket.alert = this.newalert;
     this.newticket.description = this.newdescription;
     this.newticket.members = this.newmembers.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != "";
