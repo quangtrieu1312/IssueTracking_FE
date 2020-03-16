@@ -97,7 +97,8 @@ export class SingleTicketComponent implements OnInit {
     });
 
     this.singleTicketService.putTicket(this.newticket).subscribe((result) => {
-
+      this.ticket=result.ticketsInfo[0];
+      this.router.navigateByUrl('/ticket');
     })
   }
 
