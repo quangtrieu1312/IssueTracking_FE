@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SingleTicketService } from './single-ticket.service';
 import { TicketInfo } from '../_models/ticket-info';
+import { Alert } from '../_models/alert';
 
 @Component({
   selector: 'app-single-ticket',
@@ -74,6 +75,7 @@ export class SingleTicketComponent implements OnInit {
   handleSave() {
     this.newticket.name = this.newname;
     this.newticket.status = this.newstatus;
+    this.newticket.alert = new Alert();
     this.newticket.alert.mode = this.ticket.alert.mode;
     this.newticket.alert.cronExpression = this.newcron;
     this.newticket.description = this.newdescription;

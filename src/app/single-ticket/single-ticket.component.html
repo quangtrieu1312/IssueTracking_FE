@@ -60,7 +60,7 @@
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
                     <input matInput placeholder="Extra emails" [(ngModel)]="newemails"
-                        pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]+)+" ngModel #emailref="ngModel">
+                        pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]{0,})+" ngModel #emailref="ngModel">
                     <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert alert-danger">
                         <div [hidden]="!emailref.errors?.pattern">
                             Invalid email
