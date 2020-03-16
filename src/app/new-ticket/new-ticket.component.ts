@@ -60,7 +60,7 @@ export class NewTicketComponent implements OnInit {
     this.ticket.name = 'Ticket example';
     this.alert.mode = true;
     this.alert.alertTime = null;
-    this.alert.cronExpression = '* * * * * ? *';
+    this.alert.cronExpression = '0 0 0 0 * ? *';
     this.ticket.alert = this.alert;
     this.ticket.emails = ['myemail@example.com', 'youremail@example.com'];
     this.ticket.members = ['myusername', 'yourusername'];

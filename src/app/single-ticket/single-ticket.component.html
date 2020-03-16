@@ -39,8 +39,8 @@
             <div class="input-row">
                 <mat-form-field>
                     <mat-label>Status</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let status of statuses" [value]="newstatus"
+                    <mat-select [value]="newstatus">
+                        <mat-option *ngFor="let status of statuses" 
                             style="min-width: 320px ;max-width: 2048px; width: 100%;">
                             {{status.view}}
                         </mat-option>
