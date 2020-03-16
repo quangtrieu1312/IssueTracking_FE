@@ -16,7 +16,8 @@
         <p><b>Cron Expression:</b> {{ticket.alert.cronExpression}}</p>
         <div *ngIf='hasMembers()'>
             <b>Members: </b>
-            <ng-container *ngFor='let member of ticket.members' style="min-width: 320px ;max-width: 4000px; width: 100%;">
+            <ng-container *ngFor='let member of ticket.members'
+                style="min-width: 320px ;max-width: 4000px; width: 100%;">
                 <div class="member" style="display:inline-block;">{{member}};</div>
             </ng-container>
         </div>
@@ -31,14 +32,16 @@
             <mat-expansion-panel-header style="position: absolute; right: 0px; top: 0px;"></mat-expansion-panel-header>
             <div class="input-row">
                 <mat-form-field class="my-form-field">
-                    <input matInput placeholder="Ticket name" style="min-width: 320px ;max-width: 2048px; width: 100%;" [(ngModel)]="editTicket.name">
+                    <input matInput placeholder="Ticket name" style="min-width: 320px ;max-width: 2048px; width: 100%;"
+                        [(ngModel)]="editTicket.name">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field>
                     <mat-label>Status</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let status of statuses" [value]="editTicket.status" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                        <mat-option *ngFor="let status of statuses" [value]="editTicket.status"
+                            style="min-width: 320px ;max-width: 2048px; width: 100%;">
                             {{status.view}}
                         </mat-option>
                     </mat-select>
@@ -51,17 +54,24 @@
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                    <input matInput placeholder="Members"  [(ngModel)]="editTicket.members">
+                    <input matInput placeholder="Members" [(ngModel)]="members">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                    <input matInput placeholder="Extra emails"  [(ngModel)]="editTicket.emails">
+                    <input matInput placeholder="Extra emails" [(ngModel)]="emails"
+                        pattern="([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]{0,1}$)+" ngModel #emailref="ngModel">
+                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert alert-danger">
+                        <div [hidden]="!emailref.errors?.pattern">
+                            Invalid email
+                        </div>
+                    </div>
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 4000px; width: 100%;">
-                    <textarea matInput placeholder="Description" rows="5" cols="40"  [(ngModel)]="editTicket.description"></textarea>
+                    <textarea matInput placeholder="Description" rows="5" cols="40"
+                        [(ngModel)]="editTicket.description"></textarea>
                 </mat-form-field>
             </div>
         </mat-expansion-panel>

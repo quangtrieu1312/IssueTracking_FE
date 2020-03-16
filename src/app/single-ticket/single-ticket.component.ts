@@ -53,6 +53,9 @@ export class SingleTicketComponent implements OnInit {
     ];
 
   editTicket: TicketInfo = new TicketInfo();
+  members: String = '';
+  emails: String = '';
+
   onEdit = false;
   dataLoaded = false;
 
@@ -63,12 +66,20 @@ export class SingleTicketComponent implements OnInit {
   getTicket(ticketId: String) {
     this.singleTicketService.getTicket(ticketId).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
-      this.editTicket = this.ticket;
+      this.editTicket = result.ticketsInfo[0];
       this.dataLoaded = true;
     });
   }
 
   handleSave() {
+    var emailPattern = new RegExp("([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}[;, ]{0,1}$)+");
+    this.editTicket.members = this.members.split(new RegExp('[,; ]')).filter(function (str) {
+      return str != null && str != "";
+    });
+    this.editTicket.emails = this.emails.split(new RegExp('[,; ]')).filter(function (str) {
+      return str != null && str != "";
+    });
+
     this.singleTicketService.putTicket(this.editTicket).subscribe((result) => {
 
     })
@@ -85,20 +96,11 @@ export class SingleTicketComponent implements OnInit {
   setTicketMode(e) {
     if (e.checked) {
       this.ticket.alert.mode = true;
+      this.editTicket.alert.mode = true;
     } else {
       this.ticket.alert.mode = false;
-    }
-    this.editTicket = this.ticket;
-  }
-
-  setPageEdit(e) {
-    if (e.checked) {
-      this.onEdit = true;
-    }
-    else {
-      this.onEdit = false;
+      this.editTicket.alert.mode = false;
     }
   }
-
 
 }
