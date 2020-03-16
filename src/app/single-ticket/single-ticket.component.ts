@@ -64,6 +64,7 @@ export class SingleTicketComponent implements OnInit {
   getTicket(ticketId: String) {
     this.singleTicketService.getTicket(ticketId).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
+      this.editTicket = JSON.parse(JSON.stringify(this.ticket));
       this.dataLoaded = true;
     });
   }

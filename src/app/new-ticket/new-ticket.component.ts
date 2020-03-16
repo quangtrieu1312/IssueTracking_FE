@@ -68,6 +68,7 @@ export class NewTicketComponent implements OnInit {
     this.ticket.owner = 'Owner example';
     this.ticket.status = 'NEW';
     this.ticket.ticketId = 'ExampleId';
+    this.editTicket = JSON.parse(JSON.stringify(this.ticket));
     this.dataLoaded = true;
   }
 
