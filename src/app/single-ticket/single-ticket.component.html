@@ -31,43 +31,43 @@
             <mat-expansion-panel-header style="position: absolute; right: 0px; top: 0px;"></mat-expansion-panel-header>
             <div class="input-row">
                 <mat-form-field class="my-form-field">
-                    <input matInput placeholder="Ticket name" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                    <input matInput placeholder="Ticket name" style="min-width: 320px ;max-width: 2048px; width: 100%;" [(ngModel)]="editTicket.name">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field>
                     <mat-label>Status</mat-label>
                     <mat-select>
-                        <mat-option *ngFor="let status of statuses" [value]="status" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                            {{status}}
+                        <mat-option *ngFor="let status of statuses" [value]="editTicket.status" style="min-width: 320px ;max-width: 2048px; width: 100%;">
+                            {{status.view}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                    <input matInput placeholder="Cron Expression">
+                    <input matInput placeholder="Cron Expression" [(ngModel)]="editTicket.alert.cronExpression">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                    <input matInput placeholder="Members">
+                    <input matInput placeholder="Members"  [(ngModel)]="editTicket.members">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
-                    <input matInput placeholder="Extra emails">
+                    <input matInput placeholder="Extra emails"  [(ngModel)]="editTicket.emails">
                 </mat-form-field>
             </div>
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 4000px; width: 100%;">
-                    <textarea matInput placeholder="Description" rows="5" cols="40"></textarea>
+                    <textarea matInput placeholder="Description" rows="5" cols="40"  [(ngModel)]="editTicket.description"></textarea>
                 </mat-form-field>
             </div>
         </mat-expansion-panel>
     </mat-card-content>
     <mat-card-actions align="end">
-        <button mat-button>BACK</button>
-        <button mat-button>SAVE</button>
+        <button mat-button routerLink="ticket">BACK</button>
+        <button mat-button (click)="handleSave()">SAVE</button>
     </mat-card-actions>
 </mat-card>

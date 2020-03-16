@@ -20,7 +20,39 @@ export class SingleTicketComponent implements OnInit {
 
   ticket: TicketInfo = new TicketInfo();
   ticketId: String = '';
-  statuses: String[] = ['NEW', 'ADMITTED', 'IN PROCESS', 'ON HOLD', 'REVISED', 'SOLVED', 'CLOSED'];
+  statuses: any[] =
+    [
+      {
+        value: 'NEW',
+        view: 'NEW'
+      },
+      {
+        value: 'ADMITTED',
+        view: 'ADMITTED'
+      },
+      {
+        value: 'IN_PROCESS',
+        view: 'IN PROCESS'
+      },
+      {
+        value: 'ON_HOLD',
+        view: 'ON_HOLD'
+      },
+      {
+        value: 'REVISED',
+        view: 'REVISED'
+      },
+      {
+        value: 'SOLVED',
+        view: 'SOLVED'
+      },
+      {
+        value: 'CLOSED',
+        view: 'CLOSED'
+      }
+    ];
+
+  editTicket: TicketInfo = new TicketInfo();
   onEdit = false;
   dataLoaded = false;
 
@@ -31,8 +63,15 @@ export class SingleTicketComponent implements OnInit {
   getTicket(ticketId: String) {
     this.singleTicketService.getTicket(ticketId).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
+      this.editTicket = this.ticket;
       this.dataLoaded = true;
     });
+  }
+
+  handleSave() {
+    this.singleTicketService.putTicket(this.editTicket).subscribe((result) => {
+
+    })
   }
 
   hasMembers() {
@@ -49,6 +88,7 @@ export class SingleTicketComponent implements OnInit {
     } else {
       this.ticket.alert.mode = false;
     }
+    this.editTicket = this.ticket;
   }
 
   setPageEdit(e) {

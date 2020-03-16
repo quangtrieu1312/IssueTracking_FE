@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
-import { TicketComponent } from './ticket/ticket.component';
+import { TicketsComponent } from './tickets/tickets.component';
 import { AuthService } from './auth/auth.service';
-import { TicketService } from './ticket/ticket.service';
+import { TicketsService } from './tickets/tickets.service';
 import { AboutComponent } from './about/about.component';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -24,11 +24,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon'
 
 
 import { SingleTicketComponent } from './single-ticket/single-ticket.component';
 import { SingleTicketService } from './single-ticket/single-ticket.service';
 import { SignupComponent } from './signup/signup.component';
+import { NewTicketComponent } from './new-ticket/new-ticket.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,11 @@ import { SignupComponent } from './signup/signup.component';
     NavBarComponent,
     AuthComponent,
     HomeComponent,
-    TicketComponent,
+    TicketsComponent,
     AboutComponent,
     SingleTicketComponent,
-    SignupComponent
+    SignupComponent,
+    NewTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +59,10 @@ import { SignupComponent } from './signup/signup.component';
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
-  providers: [AuthService, TicketService, SingleTicketService],
+  providers: [AuthService, TicketsService, SingleTicketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
