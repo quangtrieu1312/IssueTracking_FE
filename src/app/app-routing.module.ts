@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'ticket', component: TicketsComponent, canActivate: [AuthGuardService] },
-  { path: 'ticket/new', component: NewTicketComponent, canActivate: [AuthGuardService] },
+  { path: 'new-ticket', component: NewTicketComponent, canActivate: [AuthGuardService] },
   { path: 'ticket/:ticketId', component: SingleTicketComponent, canActivate: [AuthGuardService] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
