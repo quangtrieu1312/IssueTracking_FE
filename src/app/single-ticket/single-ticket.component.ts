@@ -14,7 +14,7 @@ export class SingleTicketComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private singleTicketService: SingleTicketService) {
+    private singleTicketService: SingleTicketService,) {
     this.route.params.subscribe(params => this.ticketId = params.ticketId);
   }
   newticket: TicketInfo = new TicketInfo();
@@ -98,8 +98,16 @@ export class SingleTicketComponent implements OnInit {
 
     this.singleTicketService.putTicket(this.newticket).subscribe((result) => {
       this.ticket=result.ticketsInfo[0];
-      this.router.navigateByUrl('/ticket');
     })
+  }
+
+  handleDelete() {
+    this.singleTicketService.deleteTicket(this.ticket.ticketId).subscribe((result)=>{
+      this.router.navigateByUrl('/ticket');
+    },(result) => {
+      
+    })
+
   }
 
   hasMembers() {

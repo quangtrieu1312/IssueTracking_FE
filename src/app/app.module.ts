@@ -25,7 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
-
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { SingleTicketComponent } from './single-ticket/single-ticket.component';
 import { SingleTicketService } from './single-ticket/single-ticket.service';
@@ -60,7 +62,10 @@ import { NewTicketComponent } from './new-ticket/new-ticket.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [AuthService, TicketsService, SingleTicketService],
   bootstrap: [AppComponent]

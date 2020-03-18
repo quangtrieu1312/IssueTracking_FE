@@ -21,8 +21,8 @@ export class TicketsService {
   constructor(private http: HttpClient) {
 
   }
-  getAllTickets(): Observable<any> {
-    return this.http.get(this.ticketUrl, this.httpOptions);
+  getAllTickets(pageIndex: number, pageSize:number, sortAttribute: string, direction:string): Observable<any> {
+    return this.http.get(`${this.ticketUrl}?page=${pageIndex}&size=${pageSize}&sort=${sortAttribute},${direction}`, this.httpOptions);
   }
 
   setAlert(ticket: TicketInfo): Observable<any> {

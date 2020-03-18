@@ -8,6 +8,7 @@ import { TicketRequest } from '../_models/ticket-request';
   providedIn: 'root'
 })
 export class SingleTicketService {
+  
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -40,6 +41,10 @@ export class SingleTicketService {
     this.ticketRequest.emails = ticket.emails;
     this.ticketRequest.description = ticket.description;
     return this.http.put<TicketInfo>(`${this.ticketUrl}/${ticket.ticketId}`, this.ticketRequest, this.httpOptions);
+  }
+  
+  deleteTicket(ticketId: String) : Observable<any> {
+    return this.http.delete(`${this.ticketUrl}/${ticketId}`,this.httpOptions);
   }
 
 }
