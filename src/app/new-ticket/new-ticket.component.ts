@@ -47,6 +47,9 @@ export class NewTicketComponent implements OnInit {
   alert: Alert = new Alert();
   emails: String = '';
   members: String = '';
+  cronToText: String = '';
+  addMemberSuccess = true;
+  ghostMembers = [];
   dataLoaded = false;
 
   constructor(
@@ -60,15 +63,19 @@ export class NewTicketComponent implements OnInit {
     this.ticket.name = 'Ticket example';
     this.alert.mode = true;
     this.alert.alertTime = null;
-    this.alert.cronExpression = '0 0 0 0 * ? *';
+    this.alert.cronExpression = '0 1 2 3 4 ? *';
     this.ticket.alert = this.alert;
     this.ticket.emails = ['myemail@example.com', 'youremail@example.com'];
     this.ticket.members = ['myusername', 'yourusername'];
-    this.ticket.description = 'This is an example';
+    this.ticket.description = 'Cron expression format' +
+      '------------------ Sec | Min | Hour |	Day Of Month | Month | Day Of Week | Year ------------------' +
+      '0 1 2 3 4 ? *: At 02:01:00am, on the 3rd day, in April, in every year. -----------------' +
+      'For more information, visit: https://www.freeformatter.com/cron-expression-generator-quartz.html#cronconverttotext';
     this.ticket.owner = 'Owner example';
     this.ticket.status = 'NEW';
     this.ticket.ticketId = 'ExampleId';
     this.newticket = JSON.parse(JSON.stringify(this.ticket));
+    this.newticket.description = '';
     this.dataLoaded = true;
   }
 
@@ -91,7 +98,6 @@ export class NewTicketComponent implements OnInit {
       this.ticket.alert.mode = false;
     }
   }
-
   handleSave() {
     this.newticket.members = this.members.split(new RegExp('[,; ]')).filter(function (str) {
       return str != null && str != '';
@@ -100,7 +106,18 @@ export class NewTicketComponent implements OnInit {
       return str != null && str != '';
     });
     this.newTicketService.postTicket(this.newticket).subscribe((result) => {
-      this.router.navigateByUrl('ticket');
+      this.ticket = result.ticketsInfo[0];
+      this.addMemberSuccess = true;
+      this.ghostMembers = [];
+      this.newticket.members.forEach(element => {
+        if (!this.ticket.members.includes(element)) {
+          this.addMemberSuccess = false;
+          this.ghostMembers.push(element);
+        }
+      });
+      if (this.addMemberSuccess) {
+        this.router.navigateByUrl('ticket');
+      }
     }, (result) => {
 
     })

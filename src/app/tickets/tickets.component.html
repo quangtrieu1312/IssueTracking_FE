@@ -11,25 +11,31 @@
 
     <ng-container matColumnDef="order">
         <mat-header-cell *matHeaderCellDef> Order</mat-header-cell>
-        <mat-cell *matCellDef="let element; let i = index"> {{i+1+pageIndex*pageSize}} <a fxFlexFill
+        <mat-cell *matCellDef="let element; let i = index"> {{i+1+pageIndex*pageSize}} 
+            <a fxFlexFill
                 [routerLink]="'/ticket/'+element.ticketId" class="mat-row-link"></a>
         </mat-cell>
     </ng-container>
 
 
     <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef fxFlex="50"> <button mat-button (click)="changeSort('name')"
-                width="100%">Name</button></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="50"> 
+            <button mat-button (click)="changeSort('name')">Name</button>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="50"> <span class="ellipsis">{{element.name}} </span></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef (click)="changeSort('status')"> Status</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> 
+            <button mat-button (click)="changeSort('status')"> Status</button>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element"> <span class="ellipsis">{{element.status}} </span></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="mode">
-        <mat-header-cell *matHeaderCellDef (click)="changeSort('mode')"> Mode</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> 
+            <button mat-button (click)="changeSort('alert.mode')"> Mode</button>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element">
             <mat-slide-toggle [(ngModel)]='element.alert.mode' style="padding-left: 10px;" (change)="setAlert(element)">
             </mat-slide-toggle>
@@ -37,12 +43,16 @@
     </ng-container>
 
     <ng-container matColumnDef="cron">
-        <mat-header-cell *matHeaderCellDef> Cron</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> 
+            <button mat-button (click)="changeSort('alert.cronExpression')"> Cron</button>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.alert.cronExpression}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="description" (click)="changeSort('description')">
-        <mat-header-cell *matHeaderCellDef fxFlex="50"> Description</mat-header-cell>
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef fxFlex="50"> 
+            <button mat-button (click)="changeSort('description')"> Description </button>
+        </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="50"> <span class="ellipsis">{{element.description}} </span>
         </mat-cell>
     </ng-container>
@@ -54,7 +64,8 @@
     <button mat-button class="btn btn-dark" (click)="getPreviousPage()" [disabled]="pageIndex===0">
         BACK
     </button>
-    <button mat-button class="btn btn-dark" (click)="getNextPage()" [disabled]="pageIndex===(totalPages-1)">
+    <button mat-button class="btn btn-dark" (click)="getNextPage()"
+        [disabled]="pageIndex===(totalPages-1) || totalPages===0">
         NEXT
     </button>
 </div>

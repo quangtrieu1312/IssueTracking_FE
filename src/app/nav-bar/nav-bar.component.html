@@ -25,9 +25,11 @@
                 <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
             </li>
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0" *ngIf = "isUserLoggedIn()">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
+        <form class="form-inline my-2 my-lg-0" *ngIf="isAtTickets()">
+            <input class="form-control mr-sm-2" type="search" placeholder="Ticket name, description" aria-label="Search"
+                [(ngModel)]="searchBox" name="searchBox">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"
+                (click)="searchNameOrDescription()">Search</button>
+        </form>
     </div>
 </nav>

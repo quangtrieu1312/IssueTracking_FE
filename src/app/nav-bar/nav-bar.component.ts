@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { SearchService } from '../shared-data/search.service';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,8 +13,13 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router, 
-    private authService: AuthService) { }
+    private router: Router,
+    private authService: AuthService,
+    private searchService: SearchService) { }
+
+  searchBox: string;
+
+  mySubscription: any;
 
   ngOnInit() {
   }
@@ -24,6 +31,15 @@ export class NavBarComponent implements OnInit {
 
   isUserLoggedIn() {
     return this.authService.isUserLoggedIn();
+  }
+
+  isAtTickets() {
+    return this.router.url === '/ticket';
+  }
+
+  searchNameOrDescription() {
+    this.searchService.changeSearchBox(this.searchBox);
+    this.router.navigateByUrl('ticket');
   }
 
 }

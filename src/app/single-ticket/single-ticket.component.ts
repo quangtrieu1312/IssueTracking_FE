@@ -29,6 +29,8 @@ export class SingleTicketComponent implements OnInit {
   dataLoaded = false;
   ticket: TicketInfo = new TicketInfo();
   ticketId: String = '';
+  addMemberSuccess = true;
+  ghostMembers = [];
   statuses: any[] =
     [
       {
@@ -102,6 +104,17 @@ export class SingleTicketComponent implements OnInit {
 
     this.singleTicketService.putTicket(this.newticket).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
+      this.addMemberSuccess = true;
+      this.ghostMembers = [];
+      this.newticket.members.forEach(element => {
+        if (!this.ticket.members.includes(element)) {
+          this.addMemberSuccess = false;
+          this.ghostMembers.push(element);
+        }
+      });
+      if (this.addMemberSuccess) {
+        this.router.navigateByUrl('ticket');
+      }
     })
   }
 
@@ -112,14 +125,6 @@ export class SingleTicketComponent implements OnInit {
 
     })
 
-  }
-
-  hasMembers() {
-    return this.ticket.members != null && this.ticket.members.length != 0;
-  }
-
-  hasEmails() {
-    return this.ticket.emails != null && this.ticket.emails.length != 0;
   }
 
   setTicketMode(e) {

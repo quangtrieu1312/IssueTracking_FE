@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { TicketInfo } from '../_models/ticket-info';
 import { TicketRequest } from '../_models/ticket-request';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CronToTextRequest } from '../_models/cron-to-text-request';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class NewTicketService {
 
   constructor(private http: HttpClient) { }
 
+  cronToTextRequest : CronToTextRequest = new CronToTextRequest();
   ticketRequest: TicketRequest = new TicketRequest();
   postTicket(ticket: TicketInfo): Observable<any> {
     this.ticketRequest.name = ticket.name;
@@ -30,4 +32,5 @@ export class NewTicketService {
     this.ticketRequest.description = ticket.description;
     return this.http.post<TicketInfo>(this.ticketUrl, this.ticketRequest, this.httpOptions);
   }
+
 }

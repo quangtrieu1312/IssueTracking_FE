@@ -2,10 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { TicketsService } from './tickets.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TicketInfo } from '../_models/ticket-info';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject } from 'rxjs';
+import { SearchService } from '../shared-data/search.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,14 +16,27 @@ export class TicketsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private ticketsService: TicketsService) { }
+    private ticketsService: TicketsService,
+    private searchService: SearchService) {
+    this.subscription = searchService.currentSearchBox.subscribe(
+      searchBox => {
+        this.searchBox = searchBox;
+        this.ticketsService.getAllTickets(this.pageIndex, this.pageSize, this.sortAttribute, this.direction).subscribe(
+          (result) => {
+            this.tickets = result.content;
+            this.totalPages = result.totalPages;
+          });
+      });
+  }
 
   sortAttribute = 'name';
   direction = 'ASC';
   pageIndex: number = 0;
   pageSize: number = 5;
   totalPages: number = 0;
+  searchBox: string;
   tickets: TicketInfo[];
+  subscription: Subscription;
   displayedColumns: string[] = ['order', 'name', 'description', 'cron', 'mode', 'status'];
 
   ngOnInit() {
@@ -74,5 +85,7 @@ export class TicketsComponent implements OnInit {
     this.ticketsService.setAlert(ticket).subscribe((result) => {
     });
   }
+
+
 }
 
