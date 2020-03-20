@@ -4,12 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --extract-css=false",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --aot --prod --extract-css=false",
+    "postinstall": "ng build  --prod",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod  --extract-css=false"
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
