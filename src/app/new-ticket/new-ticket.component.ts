@@ -68,10 +68,10 @@ export class NewTicketComponent implements OnInit {
     this.ticket.emails = ['myemail@example.com', 'youremail@example.com'];
     this.ticket.members = ['myusername', 'yourusername'];
     this.ticket.description = 'Cron expression format' +
-      '------------------ Sec | Min | Hour |	Day Of Month | Month | Day Of Week | Year ------------------' +
-      '0 1 2 3 4 ? *: At 02:01:00am, on the 3rd day, in April, in every year. -----------------' +
+    '-------- Sec | Min | Hour |	Day Of Month | Month | Day Of Week | Year --------' +
+      '0 1 2 3 4 ? *: At 02:01:00am, on the 3rd day, in April, in every year. --------' +
       'For more information, visit: https://www.freeformatter.com/cron-expression-generator-quartz.html#cronconverttotext';
-    this.ticket.owner = 'Owner example';
+    this.ticket.owner = 'Click top right corner to fill in form';
     this.ticket.status = 'NEW';
     this.ticket.ticketId = 'ExampleId';
     this.newticket = JSON.parse(JSON.stringify(this.ticket));

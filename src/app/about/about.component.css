@@ -5,8 +5,15 @@ div {
     align-items: center;
     margin: 0;
 }
-
+.image{
+    min-height: 600px;
+    background-image: url("/assets/image/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
 .example-card {
+    transform: scale(1.25);
     min-width: 320px;
     max-width: 600px;
     width: 100%;
