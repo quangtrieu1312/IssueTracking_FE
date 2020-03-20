@@ -7,9 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --aot --prod --extract-css=false",
+    "postinstall": "ng build --aot --prod",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod --extract-css=false"
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
