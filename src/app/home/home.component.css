@@ -1,7 +1,6 @@
 .image {
     min-height: 692px;
-    max-height: 1000px;
-    background-image: url("/assets/image/bg.jpg");
+    background-image: url("/assets/image/bg2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
