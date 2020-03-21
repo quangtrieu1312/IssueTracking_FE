@@ -1,3 +1,7 @@
+.container{
+    position: relative;
+}
+
 .image {
     min-height: 879px;
     background-image: url("/assets/image/bg.jpg");
@@ -9,14 +13,26 @@
 .centered {
     position: absolute;
     top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
- 
+    width: 100%;
 }
 
-h1, h2 {
-    transform: scale(1.5);
-    color: black;
-    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+.mat-card {
+    min-width: 300px;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: float 6s ease-in-out infinite;
 }
 
+@keyframes float {
+    0% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+    50% {
+        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+        transform: translatey(-20px);
+    }
+    100% {
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+        transform: translatey(0px);
+    }
+}
