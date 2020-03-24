@@ -1,5 +1,5 @@
 export class Alert{
     mode: Boolean;
-    alertTime: Date;
+    timezone: String;
     cronExpression: String;
 }

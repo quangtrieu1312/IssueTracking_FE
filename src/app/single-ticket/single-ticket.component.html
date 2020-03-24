@@ -13,7 +13,8 @@
         <p><b>Alert: </b>
             <mat-slide-toggle [(ngModel)]='ticket.alert.mode' (change)='setTicketMode($event)'></mat-slide-toggle>
         </p>
-        <p><b>Cron Expression:</b> {{ticket.alert.cronExpression}}</p>
+        <p><b>Cron expression:</b> {{ticket.alert.cronExpression}}</p>
+        <p><b>Time zone:</b> {{ticket.alert.timezone}}</p>
         <p>
             <b>Members: </b>
             <ng-container *ngFor='let member of ticket.members'
@@ -50,6 +51,17 @@
             <div class="input-row">
                 <mat-form-field class="my-form-field" style="min-width: 320px ;max-width: 2048px; width: 100%;">
                     <input matInput placeholder="Cron Expression" [(ngModel)]="newcron">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                <mat-form-field class="my-form-field">
+                    <mat-label>Time zone</mat-label>
+                    <mat-select [(ngModel)]="newtimezone">
+                        <mat-option *ngFor="let tz of timezones"
+                            style="min-width: 320px ;max-width: 2048px; width: 100%;" [(value)]='tz.value'>
+                            {{tz.view}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
             <div class="input-row">

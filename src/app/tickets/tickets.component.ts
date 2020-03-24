@@ -31,13 +31,13 @@ export class TicketsComponent implements OnInit {
 
   sortAttribute = 'name';
   direction = 'ASC';
-  pageIndex: number = 0;
-  pageSize: number = 5;
-  totalPages: number = 0;
+  pageIndex = 0;
+  pageSize = 5;
+  totalPages = 0;
   searchBox: string;
   tickets: TicketInfo[];
   subscription: Subscription;
-  displayedColumns: string[] = ['order', 'name', 'description', 'cron', 'mode', 'status'];
+  displayedColumns: string[] = ['order', 'name', 'description', 'cron', 'timezone', 'mode', 'status'];
 
   ngOnInit() {
     this.getAllTickets();

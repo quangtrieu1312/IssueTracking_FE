@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TicketInfo } from '../_models/ticket-info';
 import { NewTicketService } from './new-ticket.service';
 import { Alert } from '../_models/alert';
+import { TimezoneService } from '../shared-data/timezone.service';
 
 @Component({
   selector: 'app-new-ticket',
@@ -50,25 +51,27 @@ export class NewTicketComponent implements OnInit {
   cronToText: String = '';
   addMemberSuccess = true;
   ghostMembers = [];
+  timezones = [];
   dataLoaded = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private newTicketService: NewTicketService) {
+    private newTicketService: NewTicketService,
+    private timezoneService: TimezoneService) {
   }
 
 
   ngOnInit(): void {
     this.ticket.name = 'Ticket example';
     this.alert.mode = true;
-    this.alert.alertTime = null;
+    this.alert.timezone = 'US/Central';
     this.alert.cronExpression = '0 1 2 3 4 ? *';
     this.ticket.alert = this.alert;
     this.ticket.emails = ['myemail@example.com', 'youremail@example.com'];
     this.ticket.members = ['myusername', 'yourusername'];
     this.ticket.description = 'Cron expression format' +
-    '-------- Sec | Min | Hour |	Day Of Month | Month | Day Of Week | Year --------' +
+      '-------- Sec | Min | Hour |	Day Of Month | Month | Day Of Week | Year --------' +
       '0 1 2 3 4 ? *: At 02:01:00am, on the 3rd day, in April, in every year. --------' +
       'For more information, visit: https://www.freeformatter.com/cron-expression-generator-quartz.html#cronconverttotext';
     this.ticket.owner = 'Click top right corner to fill in form';
@@ -76,7 +79,16 @@ export class NewTicketComponent implements OnInit {
     this.ticket.ticketId = 'ExampleId';
     this.newticket = JSON.parse(JSON.stringify(this.ticket));
     this.newticket.description = '';
-    this.dataLoaded = true;
+    this.getTimezones();
+  }
+
+  getTimezones() {
+    this.timezoneService.getTimezones().subscribe(result => {
+      result.timezones.forEach(element => {
+        this.timezones.push(new Timezone(element, element));
+        this.dataLoaded = true;
+      });
+    });
   }
 
   goToTicketList() {
@@ -123,4 +135,8 @@ export class NewTicketComponent implements OnInit {
     })
   }
 
+}
+function Timezone(value: String, view: String) {
+  this.value = value;
+  this.view = view;
 }

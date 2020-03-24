@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SingleTicketService } from './single-ticket.service';
 import { TicketInfo } from '../_models/ticket-info';
 import { Alert } from '../_models/alert';
+import 'moment-timezone';
+import { TimezoneService } from '../shared-data/timezone.service';
 
 @Component({
   selector: 'app-single-ticket',
@@ -14,7 +16,8 @@ export class SingleTicketComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private singleTicketService: SingleTicketService, ) {
+    private singleTicketService: SingleTicketService,
+    private timezoneService: TimezoneService) {
     this.route.params.subscribe(params => this.ticketId = params.ticketId);
   }
   newticket: TicketInfo = new TicketInfo();
@@ -22,6 +25,7 @@ export class SingleTicketComponent implements OnInit {
   newstatus: String = '';
   newmode: Boolean = false;
   newcron: String = '';
+  newtimezone: String = '';
   newmembers: String = '';
   newemails: String = '';
   newdescription: String = '';
@@ -62,12 +66,19 @@ export class SingleTicketComponent implements OnInit {
         view: 'CLOSED'
       }
     ];
-
-
+  timezones = [];
   ngOnInit(): void {
     this.getTicket(this.ticketId);
   }
 
+  getTimezones() {
+    this.timezoneService.getTimezones().subscribe(result => {
+      result.timezones.forEach(element => {
+        this.timezones.push(new Timezone(element,element));
+        this.dataLoaded = true;
+      });
+    });
+  }
   getTicket(ticketId: String) {
     this.singleTicketService.getTicket(ticketId).subscribe((result) => {
       this.ticket = result.ticketsInfo[0];
@@ -75,6 +86,7 @@ export class SingleTicketComponent implements OnInit {
       this.newstatus = this.ticket.status;
       this.newmode = false;
       this.newcron = this.ticket.alert.cronExpression;
+      this.newtimezone = this.ticket.alert.timezone;
       if (this.ticket.members != null) {
         this.newmembers = this.ticket.members.join('; ');
       }
@@ -82,7 +94,7 @@ export class SingleTicketComponent implements OnInit {
         this.newemails = this.ticket.emails.join('; ');
       }
       this.newdescription = this.ticket.description;
-      this.dataLoaded = true;
+      this.getTimezones();
     });
   }
 
@@ -92,6 +104,7 @@ export class SingleTicketComponent implements OnInit {
     this.newticket.status = this.newstatus;
     this.newmode = this.ticket.alert.mode;
     this.newalert.mode = this.newmode;
+    this.newalert.timezone = this.newtimezone;
     this.newalert.cronExpression = this.newcron;
     this.newticket.alert = this.newalert;
     this.newticket.description = this.newdescription;
@@ -127,6 +140,10 @@ export class SingleTicketComponent implements OnInit {
 
   }
 
+  timeZoneChanged(timezone: String): void {
+    this.newtimezone = timezone;
+  }
+
   setTicketMode(e) {
     if (e.checked) {
       this.ticket.alert.mode = true;
@@ -135,4 +152,8 @@ export class SingleTicketComponent implements OnInit {
     }
   }
 
+}
+function Timezone(value: String, view: String) {
+  this.value = value;
+  this.view = view;
 }

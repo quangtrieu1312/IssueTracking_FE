@@ -10,7 +10,7 @@
           The actual rendered columns are set as a property on the row definition" -->
 
     <ng-container matColumnDef="order">
-        <mat-header-cell *matHeaderCellDef> Order</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Order</mat-header-cell>
         <mat-cell *matCellDef="let element; let i = index"> {{i+1+pageIndex*pageSize}} 
             <a fxFlexFill
                 [routerLink]="'/ticket/'+element.ticketId" class="mat-row-link"></a>
@@ -27,14 +27,14 @@
 
     <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> 
-            <button mat-button (click)="changeSort('status')"> Status</button>
+            <button mat-button (click)="changeSort('status')">Status</button>
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> <span class="ellipsis">{{element.status}} </span></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="mode">
         <mat-header-cell *matHeaderCellDef> 
-            <button mat-button (click)="changeSort('alert.mode')"> Mode</button>
+            <button mat-button (click)="changeSort('alert.mode')">Mode</button>
         </mat-header-cell>
         <mat-cell *matCellDef="let element">
             <mat-slide-toggle [(ngModel)]='element.alert.mode' style="padding-left: 10px;" (change)="setAlert(element)">
@@ -44,14 +44,21 @@
 
     <ng-container matColumnDef="cron">
         <mat-header-cell *matHeaderCellDef> 
-            <button mat-button (click)="changeSort('alert.cronExpression')"> Cron</button>
+            <button mat-button (click)="changeSort('alert.cronExpression')">Cron</button>
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.alert.cronExpression}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="timezone">
+        <mat-header-cell *matHeaderCellDef> 
+            <button mat-button (click)="changeSort('alert.timezone')">Time zone</button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.alert.timezone}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef fxFlex="50"> 
-            <button mat-button (click)="changeSort('description')"> Description </button>
+            <button mat-button (click)="changeSort('description')">Description </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="50"> <span class="ellipsis">{{element.description}} </span>
         </mat-cell>
