@@ -5,6 +5,10 @@ import { TicketInfo } from '../_models/ticket-info';
 import { Alert } from '../_models/alert';
 import 'moment-timezone';
 import { TimezoneService } from '../shared-data/timezone.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
+
 
 @Component({
   selector: 'app-single-ticket',
@@ -17,7 +21,8 @@ export class SingleTicketComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private singleTicketService: SingleTicketService,
-    private timezoneService: TimezoneService) {
+    private timezoneService: TimezoneService,
+    public dialog: MatDialog) {
     this.route.params.subscribe(params => this.ticketId = params.ticketId);
   }
   newticket: TicketInfo = new TicketInfo();
@@ -74,8 +79,7 @@ export class SingleTicketComponent implements OnInit {
   getTimezones() {
     this.timezoneService.getTimezones().subscribe(result => {
       result.timezones.forEach(element => {
-        this.timezones.push(new Timezone(element,element));
-        this.dataLoaded = true;
+        this.timezones.push(new Timezone(element, element));
       });
     });
   }
@@ -94,6 +98,7 @@ export class SingleTicketComponent implements OnInit {
         this.newemails = this.ticket.emails.join('; ');
       }
       this.newdescription = this.ticket.description;
+      this.dataLoaded = true;
       this.getTimezones();
     });
   }
@@ -131,6 +136,18 @@ export class SingleTicketComponent implements OnInit {
     })
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {confirm: false}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true){
+        this.handleDelete();
+      }
+    });
+  }
   handleDelete() {
     this.singleTicketService.deleteTicket(this.ticket.ticketId).subscribe((result) => {
       this.router.navigateByUrl('/ticket');
@@ -157,3 +174,4 @@ function Timezone(value: String, view: String) {
   this.value = value;
   this.view = view;
 }
+

@@ -26,13 +26,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSortModule } from '@angular/material/sort';
-import { MatDialogModule } from '@angular/material/dialog'
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { SingleTicketComponent } from './single-ticket/single-ticket.component';
 import { SingleTicketService } from './single-ticket/single-ticket.service';
 import { SignupComponent } from './signup/signup.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { NewTicketComponent } from './new-ticket/new-ticket.component';
     AboutComponent,
     SingleTicketComponent,
     SignupComponent,
-    NewTicketComponent
+    NewTicketComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +65,7 @@ import { NewTicketComponent } from './new-ticket/new-ticket.component';
     MatSelectModule,
     MatIconModule,
     MatSortModule,
-    MatPaginatorModule,
-    MatDialogModule
+    MatPaginatorModule
   ],
   providers: [AuthService, TicketsService, SingleTicketService],
   bootstrap: [AppComponent]
