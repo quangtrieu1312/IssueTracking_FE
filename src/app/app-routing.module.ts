@@ -9,14 +9,13 @@ import { SingleTicketComponent } from './single-ticket/single-ticket.component';
 import { SignupComponent } from './signup/signup.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 
-
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'ticket', component: TicketsComponent , canActivate: [AuthGuardService]},
-  { path: 'new-ticket', component: NewTicketComponent , canActivate: [AuthGuardService]},
+  { path: 'ticket', component: TicketsComponent, canActivate: [AuthGuardService] },
+  { path: 'new-ticket', component: NewTicketComponent, canActivate: [AuthGuardService] },
   { path: 'ticket/:ticketId', component: SingleTicketComponent, canActivate: [AuthGuardService] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }

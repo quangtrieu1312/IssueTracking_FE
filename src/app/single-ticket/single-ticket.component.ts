@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SingleTicketService } from './single-ticket.service';
 import { TicketInfo } from '../_models/ticket-info';
 import { Alert } from '../_models/alert';
 import 'moment-timezone';
 import { TimezoneService } from '../shared-data/timezone.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-
 
 
 @Component({
@@ -74,12 +73,14 @@ export class SingleTicketComponent implements OnInit {
   timezones = [];
   ngOnInit(): void {
     this.getTicket(this.ticketId);
+
   }
 
   getTimezones() {
     this.timezoneService.getTimezones().subscribe(result => {
       result.timezones.forEach(element => {
         this.timezones.push(new Timezone(element, element));
+        this.dataLoaded = true;
       });
     });
   }
@@ -98,7 +99,6 @@ export class SingleTicketComponent implements OnInit {
         this.newemails = this.ticket.emails.join('; ');
       }
       this.newdescription = this.ticket.description;
-      this.dataLoaded = true;
       this.getTimezones();
     });
   }
@@ -138,16 +138,17 @@ export class SingleTicketComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: {confirm: false}
+      width: '300px',
+      data: { confirm: false }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === true){
+      if (result === true) {
         this.handleDelete();
       }
     });
   }
+
   handleDelete() {
     this.singleTicketService.deleteTicket(this.ticket.ticketId).subscribe((result) => {
       this.router.navigateByUrl('/ticket');

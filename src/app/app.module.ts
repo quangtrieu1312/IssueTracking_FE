@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog'
 
 import { SingleTicketComponent } from './single-ticket/single-ticket.component';
 import { SingleTicketService } from './single-ticket/single-ticket.service';
@@ -65,9 +66,22 @@ import { DialogComponent } from './dialog/dialog.component';
     MatSelectModule,
     MatIconModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
-  providers: [AuthService, TicketsService, SingleTicketService],
+  providers: [AuthService, TicketsService, SingleTicketService,
+    {
+      provide: MatDialogRef,
+      useValue: []
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: []
+    },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: { hasBackdrop: false }
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
