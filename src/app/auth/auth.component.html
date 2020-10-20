@@ -6,12 +6,12 @@
                 <div class="form-group">
                     <label for="email">User Name :</label>
                     <input type="text" class="form-control" id="username" [(ngModel)]="authRequest.username"
-                        placeholder="Enter User Name" name="username">
+                        placeholder="Demo username: user001demo" name="username">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password:</label>
                     <input type="password" class="form-control" id="password" [(ngModel)]="authRequest.password"
-                        placeholder="Enter password" name="password">
+                        placeholder="Demo password: P@ssw0rd123" name="password">
                 </div>
                 <div class="button-wrapper">
                     <button (click)=handleLogin() class="btn btn-dark">Login</button>

@@ -353,7 +353,7 @@
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! D:\Angular\Workplace\Projectzero\src\styles.css */
+    /*! D:\VSCode\Workplace\Projectzero\src\styles.css */
     "./src/styles.css");
     /***/
   }

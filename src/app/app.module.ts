@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { AuthService } from './auth/auth.service';
 import { TicketsService } from './tickets/tickets.service';
-import { AboutComponent } from './about/about.component';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
@@ -42,7 +41,6 @@ import { DialogComponent } from './dialog/dialog.component';
     AuthComponent,
     HomeComponent,
     TicketsComponent,
-    AboutComponent,
     SingleTicketComponent,
     SignupComponent,
     NewTicketComponent,

@@ -338,7 +338,7 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Angular\Workplace\Projectzero\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! D:\VSCode\Workplace\Projectzero\src\styles.css */"./src/styles.css");
 
 
 /***/ })

@@ -4,14 +4,12 @@ import { HomeComponent } from './home/home.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthComponent } from './auth/auth.component';
-import { AboutComponent } from './about/about.component';
 import { SingleTicketComponent } from './single-ticket/single-ticket.component';
 import { SignupComponent } from './signup/signup.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
   { path: 'login', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'ticket', component: TicketsComponent, canActivate: [AuthGuardService] },
