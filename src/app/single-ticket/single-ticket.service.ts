@@ -19,7 +19,7 @@ export class SingleTicketService {
 
   ticketUrl = 'https://mysterious-reaches-08183.herokuapp.com/ticket';
 
-  userUrl = 'https://mysterious-reaches-08183.herokuapp.com/user/';
+  userUrl = 'https://mysterious-reaches-08183.herokuapp.com/user';
 
   ticketRequest: TicketRequest = new TicketRequest();
 
